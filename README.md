@@ -283,7 +283,7 @@ Eğer bu proje işinize yaradıysa, GitHub üzerinde yıldız vermeyi unutmayın
 
 ## 📄 Lisans
 
-ISC
+[MIT](https://github.com/iphysicc/sitwatch-npm/blob/main/LICENSE)
 
 ---
 
