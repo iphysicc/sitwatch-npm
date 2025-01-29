@@ -214,7 +214,6 @@ try {
 ## 👨‍💻 Geliştirici Bilgileri
 
 <div align="center">
-  <img src="https://avatars.githubusercontent.com/u/your_github_id" width="100" style="border-radius: 50%;" alt="Physic"/>
   <h3>Physic</h3>
   <p>SitWatch Geliştiricisi</p>
   
