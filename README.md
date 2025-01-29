@@ -209,7 +209,22 @@ try {
 - **Timeout**: 10 saniye
 - **Content-Type**: application/json
 - **Kimlik Doğrulama**: Bearer token
-- **Base URL**: https://sitwatch.net/api
+- **Base URL**: https://api.sitwatch.net/api
+
+### API URL Kişiselleştirme
+
+```javascript
+// İstemciyi özel bir API URL'i ile oluşturma
+const client = new SitWatch({
+    baseURL: 'https://api.sitwatch.net/api'
+});
+
+// API URL'ini sonradan değiştirme
+client.setBaseURL('https://api.sitwatch.net/api');
+
+// Mevcut API URL'ini alma
+const baseURL = client.getBaseURL();
+```
 
 ## 👨‍💻 Geliştirici Bilgileri
 

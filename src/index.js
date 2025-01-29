@@ -8,12 +8,12 @@ class SitWatch {
     /**
      * SitWatch API istemcisini oluşturur
      * @param {Object} config - Yapılandırma seçenekleri
-     * @param {string} [config.baseURL='https://sitwatch.net/api'] - API'nin temel URL'i
+     * @param {string} [config.baseURL='https://api.sitwatch.net/api'] - API'nin temel URL'i
      * @param {string} [config.token] - Önceden kaydedilmiş token
      * @param {Function} [config.onTokenChange] - Token değiştiğinde çağrılacak fonksiyon
      */
     constructor(config = {}) {
-        this.baseURL = config.baseURL || 'https://sitwatch.net/api';
+        this.baseURL = config.baseURL || 'https://api.sitwatch.net/api';
         this.onTokenChange = config.onTokenChange;
         
         this.client = axios.create({
@@ -32,6 +32,27 @@ class SitWatch {
         if (config.token) {
             this.setToken(config.token);
         }
+    }
+
+    /**
+     * API'nin temel URL'ini değiştirir
+     * @param {string} url - Yeni API URL'i
+     * @example
+     * client.setBaseURL('https://api.sitwatch.net/api');
+     */
+    setBaseURL(url) {
+        this.baseURL = url;
+        this.client.defaults.baseURL = url;
+    }
+
+    /**
+     * Mevcut API temel URL'ini döndürür
+     * @returns {string} Mevcut API URL'i
+     * @example
+     * const baseURL = client.getBaseURL();
+     */
+    getBaseURL() {
+        return this.baseURL;
     }
 
     /**
