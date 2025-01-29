@@ -248,7 +248,7 @@ try {
   - Kapsamlı API desteği
 
 ### 📞 İletişim
-- GitHub: [@iiphysic_](https://github.com/iphysicc)
+- GitHub: [@iphysicc](https://github.com/iphysicc)
 - SitWatch: [@Physic](https://sitwatch.net/Physic)
 
 ### ⭐ Projeyi Destekle
@@ -279,7 +279,7 @@ Eğer bu proje işinize yaradıysa, GitHub üzerinde yıldız vermeyi unutmayın
 
 - GitHub Issues üzerinden destek alabilirsiniz
 - API dökümantasyonu için: https://sitwatch.net/docs/api
-- Sürüm notları için: https://github.com/iiphysic_/sitwatch-npm/releases
+- Sürüm notları için: https://github.com/iphysicc/sitwatch-npm/
 
 ## 📄 Lisans
 
