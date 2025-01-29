@@ -211,29 +211,55 @@ try {
 - **Kimlik Doğrulama**: Bearer token
 - **Base URL**: https://sitwatch.net/api
 
-## 👨‍💻 Geliştirici Notları
+## 👨‍💻 Geliştirici Bilgileri
 
-### Token Yönetimi
-- Login sonrası otomatik token ayarı
-- Logout ile token temizleme
-- Authorization header yönetimi
+<div align="center">
+  <img src="https://avatars.githubusercontent.com/u/your_github_id" width="100" style="border-radius: 50%;" alt="Physic"/>
+  <h3>Physic</h3>
+  <p>SitWatch Geliştiricisi</p>
+  
+  [![GitHub](https://img.shields.io/github/followers/iiphysic_?label=GitHub&style=social)](https://github.com/iphysicc)
+  [![Version](https://img.shields.io/npm/v/sitwatch-npm.svg)](https://www.npmjs.com/package/sitwatch-npm)
+  [![Downloads](https://img.shields.io/npm/dt/sitwatch-npm.svg)](https://www.npmjs.com/package/sitwatch-npm)
+</div>
 
-### Hata İşleme
-- HTTP durum kodları
-- API hata mesajları
-- Network hataları
-- Timeout yönetimi
+### 📊 Proje İstatistikleri
+- **Versiyon**: 1.0.1
+- **Node.js Gereksinimi**: >= 12.0.0
+- **Ana Bağımlılık**: axios ^1.6.7
+- **Lisans**: ISC
+- **Paket Boyutu**: Minimal (~100KB)
 
-### Sayfalama
+### 🤝 Katkıda Bulunma
+1. Bu depoyu fork edin
+2. Yeni bir özellik dalı oluşturun (`git checkout -b yeni-ozellik`)
+3. Değişikliklerinizi commit edin (`git commit -am 'Yeni özellik: XYZ'`)
+4. Dalınıza push yapın (`git push origin yeni-ozellik`)
+5. Bir Pull Request oluşturun
 
-- Varsayılan sayfa boyutu: 10
-- Sayfa numarası ve boyutu özelleştirme
-- Toplam sayfa ve öğe sayısı bilgisi
+### 📝 Sürüm Geçmişi
+- **v1.0.1** - Güncel versiyon
+  - Token yönetimi iyileştirmeleri
+  - Hata yönetimi geliştirmeleri
+  - Dokümantasyon güncellemeleri
 
-### Yanıt Formatları
-- Tüm metodlar için detaylı JSDoc
-- Örnek kullanımlar
-- Tip tanımları
+- **v1.0.0** - İlk sürüm
+  - Temel API özellikleri
+  - JWT tabanlı kimlik doğrulama
+  - Kapsamlı API desteği
+
+### 📞 İletişim
+- GitHub: [@iiphysic_](https://github.com/iphysicc)
+- SitWatch: [@Physic](https://sitwatch.net/Physic)
+
+### ⭐ Projeyi Destekle
+Eğer bu proje işinize yaradıysa, GitHub üzerinde yıldız vermeyi unutmayın!
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ by <a href="https://sitwatch.net/Physic">Physic</a></sub>
+</div>
 
 ## 🔒 Güvenlik
 
@@ -254,7 +280,7 @@ try {
 
 - GitHub Issues üzerinden destek alabilirsiniz
 - API dökümantasyonu için: https://sitwatch.net/docs/api
-- Sürüm notları için: https://github.com/iphysicc/sitwatch-npm/releases
+- Sürüm notları için: https://github.com/iiphysic_/sitwatch-npm/releases
 
 ## 📄 Lisans
 

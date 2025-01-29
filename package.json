@@ -1,6 +1,6 @@
 {
   "name": "sitwatch-npm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Official Node.js client for SitWatch API",
   "main": "src/index.js",
   "scripts": {
@@ -18,7 +18,8 @@
   "author": "Physic",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.6.7"
+    "axios": "^1.6.7",
+    "sitwatch-npm": "^1.0.0"
   },
   "repository": {
     "type": "git",
