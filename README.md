@@ -224,9 +224,9 @@ try {
 
 ### 📊 Proje İstatistikleri
 - **Versiyon**: 1.0.1
-- **Node.js Gereksinimi**: >= 12.0.0
-- **Ana Bağımlılık**: axios ^1.6.7
-- **Lisans**: ISC
+- **Node.js Gereksinimi**: >= 22
+- **Ana Bağımlılık**: axios
+- **Lisans**: [MIT](https://github.com/iphysicc/sitwatch-npm/blob/main/LICENSE)
 - **Paket Boyutu**: Minimal (~100KB)
 
 ### 🤝 Katkıda Bulunma
