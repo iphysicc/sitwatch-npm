@@ -1,0 +1,28 @@
+# Geliştirme dosyaları
+.git
+.gitignore
+.env
+.env.*
+.vscode/
+.idea/
+
+# Test dosyaları
+test/
+test.js
+*.test.js
+*.spec.js
+
+# Dökümantasyon
+docs/
+*.md
+!README.md
+
+# Diğer
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.DS_Store
+*.log
+coverage/
+.nyc_output/ 
