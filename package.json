@@ -1,6 +1,6 @@
 {
   "name": "sitwatch-npm",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Official Node.js client for SitWatch API",
   "main": "src/index.js",
   "scripts": {
