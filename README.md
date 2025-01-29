@@ -249,7 +249,7 @@ try {
 
 ### 📞 İletişim
 - GitHub: [@iphysicc](https://github.com/iphysicc)
-- SitWatch: [@Physic](https://sitwatch.net/Physic)
+- SitWatch: [@Physic](https://sitwatch.net/profile/Physic)
 
 ### ⭐ Projeyi Destekle
 Eğer bu proje işinize yaradıysa, GitHub üzerinde yıldız vermeyi unutmayın!
@@ -257,7 +257,7 @@ Eğer bu proje işinize yaradıysa, GitHub üzerinde yıldız vermeyi unutmayın
 ---
 
 <div align="center">
-  <sub>Built with ❤️ by <a href="https://sitwatch.net/Physic">Physic</a></sub>
+  <sub>Built with ❤️ by <a href="https://sitwatch.net/profile/Physic">Physic</a></sub>
 </div>
 
 ## 🔒 Güvenlik
