@@ -217,7 +217,7 @@ try {
   <h3>Physic</h3>
   <p>SitWatch Geliştiricisi</p>
   
-  [![GitHub](https://img.shields.io/github/followers/iiphysic_?label=GitHub&style=social)](https://github.com/iphysicc)
+  [![GitHub](https://img.shields.io/github/followers/iphysicc?label=GitHub&style=social)](https://github.com/iphysicc)
   [![Version](https://img.shields.io/npm/v/sitwatch-npm.svg)](https://www.npmjs.com/package/sitwatch-npm)
   [![Downloads](https://img.shields.io/npm/dt/sitwatch-npm.svg)](https://www.npmjs.com/package/sitwatch-npm)
 </div>
