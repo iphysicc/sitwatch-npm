@@ -122,6 +122,125 @@ const comments = await client.getVideoComments(videoId);
 const history = await client.getWatchHistory();
 ```
 
+### 🔄 Canlı Video İzleme
+
+SitWatch API'si, yeni yüklenen videoları otomatik olarak tespit etmek için iki farklı yöntem sunar:
+
+#### Event Listener API (Önerilen)
+```javascript
+// Yeni videoları dinlemeye başla
+const listener = client.on('newVideo', (video) => {
+    console.log('Yeni video yüklendi!', {
+        id: video.id,
+        başlık: video.title,
+        yükleyen: video.uploader.username,
+        yüklenme_tarihi: video.upload_date
+    });
+}, { 
+    interval: 5000 // 5 saniyede bir kontrol (varsayılan)
+});
+
+// Dinleyici durumunu kontrol et
+if (listener.isActive()) {
+    console.log('Dinleyici aktif');
+}
+
+// Kontrol aralığını öğren
+console.log('Kontrol aralığı:', listener.getInterval(), 'ms');
+
+// Dinlemeyi durdur
+listener.stop();
+```
+
+#### Klasik API (Eski)
+```javascript
+// Yeni videoları izlemeye başla
+const observerId = client.observeNewVideos((video) => {
+    console.log('Yeni video yüklendi:', video.title);
+}, { 
+    interval: 10000 // 10 saniyede bir kontrol
+});
+
+// İzlemeyi durdur
+client.stopObserving(observerId);
+
+// Tüm izlemeleri durdur
+client.stopAllObserving();
+```
+
+#### Video Nesnesi Yapısı
+```javascript
+{
+    id: number,           // Video ID
+    title: string,        // Video başlığı
+    description: string,  // Video açıklaması
+    thumbnail_url: string,// Küçük resim URL'i
+    video_url: string,    // Video URL'i
+    upload_date: string,  // Yüklenme tarihi
+    views: number,        // İzlenme sayısı
+    uploader: {
+        username: string,    // Yükleyen kullanıcı adı
+        profile_image: string// Profil resmi
+    }
+}
+```
+
+#### Örnek Kullanım
+
+```javascript
+const SitWatch = require('sitwatch-npm');
+const client = new SitWatch();
+
+// Video işleme fonksiyonu
+const handleNewVideo = (video) => {
+    console.log('\n🎥 Yeni Video!');
+    console.log('━━━━━━━━━━━━━━━━');
+    console.log('📝 Başlık:', video.title);
+    console.log('👤 Yükleyen:', video.uploader.username);
+    console.log('⏰ Tarih:', video.upload_date);
+    console.log('🔗 URL:', `https://sitwatch.net/watch/${video.id}`);
+};
+
+async function watchNewVideos() {
+    try {
+        // Giriş yap (isteğe bağlı)
+        await client.login('username', 'password');
+
+        // Yeni videoları dinle (10 saniyede bir)
+        const listener = client.on('newVideo', handleNewVideo, {
+            interval: 10000
+        });
+
+        // Ctrl+C ile durdurma
+        process.on('SIGINT', () => {
+            listener.stop();
+            process.exit(0);
+        });
+
+    } catch (error) {
+        console.error('Hata:', error.message);
+    }
+}
+
+watchNewVideos();
+```
+
+#### Özellikler
+
+- **Otomatik Tespit**: Yeni videolar otomatik olarak tespit edilir
+- **Özelleştirilebilir Aralık**: Kontrol sıklığı ayarlanabilir (varsayılan: 5 saniye)
+- **Temiz Kapatma**: Dinleyici düzgün bir şekilde kapatılabilir
+- **Durum Kontrolü**: Dinleyicinin aktif olup olmadığı kontrol edilebilir
+- **Hata Yönetimi**: Hatalar otomatik olarak yakalanır ve raporlanır
+
+#### Öneriler
+
+1. Çok kısa kontrol aralıkları kullanmaktan kaçının (5 saniyeden az)
+2. Her zaman try-catch bloğu kullanın
+3. Programı kapatırken dinleyiciyi durdurun
+4. Event Listener API'sini tercih edin (yeni versiyon)
+5. Uzun süreli kullanımlarda bellek kullanımını takip edin
+
 ### 👥 Kullanıcı İşlemleri
 
 #### Profil Bilgileri

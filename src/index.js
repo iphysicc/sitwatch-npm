@@ -695,6 +695,185 @@ class SitWatch {
             throw this._handleError(error);
         }
     }
+
+    /**
+     * Yeni videoları gözlemler (Eski metod - geriye dönük uyumluluk için)
+     * @deprecated Lütfen bunun yerine on('newVideo', callback, options) kullanın
+     * @param {Function} callback - Yeni video bulunduğunda çağrılacak fonksiyon
+     * @param {Object} [options] - Gözlem seçenekleri
+     * @param {number} [options.interval=5000] - Kontrol aralığı (milisaniye)
+     * @returns {number} Gözlem ID'si (durdurma için kullanılır)
+     * @throws {Object} Hata durumunda detaylı hata bilgisi
+     * @example
+     * // Yeni videoları izlemeye başla
+     * const observerId = client.observeNewVideos((video) => {
+     *   console.log('Yeni video:', video.title);
+     * }, { interval: 10000 }); // 10 saniyede bir kontrol et
+     * 
+     * // İzlemeyi durdur
+     * client.stopObserving(observerId);
+     */
+    observeNewVideos(callback, options = {}) {
+        console.warn('Warning: observeNewVideos metodu eski versiyondur. Lütfen on("newVideo", callback, options) kullanın.');
+        
+        if (!callback || typeof callback !== 'function') {
+            throw new Error('Callback fonksiyonu gerekli');
+        }
+
+        // Son kontrol edilen video ID'sini sakla
+        let lastVideoId = null;
+        
+        // Varsayılan interval 5 saniye
+        const interval = options.interval || 5000;
+
+        // Kontrol fonksiyonu
+        const checkNewVideos = async () => {
+            try {
+                const response = await this.getLatestVideos();
+                
+                if (response && response.length > 0) {
+                    const latestVideo = response[0];
+
+                    // Eğer bu yeni bir video ise
+                    if (lastVideoId !== null && latestVideo.id !== lastVideoId) {
+                        // Yeni videoları bul (son kontrolden sonra eklenenler)
+                        const newVideos = response.filter(video => video.id > lastVideoId);
+                        
+                        // Yeni videoları callback ile bildir (en yeniden eskiye)
+                        for (const video of newVideos.reverse()) {
+                            callback(video);
+                        }
+                    }
+
+                    // Son video ID'sini güncelle
+                    lastVideoId = latestVideo.id;
+                }
+            } catch (error) {
+                console.error('Video kontrolü sırasında hata:', error);
+            }
+        };
+
+        // İlk kontrolü hemen yap
+        checkNewVideos();
+
+        // Periyodik kontrolleri başlat
+        const intervalId = setInterval(checkNewVideos, interval);
+
+        // Interval ID'sini kaydet
+        this._observers = this._observers || new Map();
+        this._observers.set(intervalId, { type: 'newVideos', callback });
+
+        return intervalId;
+    }
+
+    /**
+     * Video gözlemini durdurur
+     * @deprecated Lütfen bunun yerine listener.stop() kullanın
+     * @param {number} observerId - Gözlem ID'si
+     * @example
+     * client.stopObserving(observerId);
+     */
+    stopObserving(observerId) {
+        console.warn('Warning: stopObserving metodu eski versiyondur. Lütfen listener.stop() kullanın.');
+        if (this._observers && this._observers.has(observerId)) {
+            clearInterval(observerId);
+            this._observers.delete(observerId);
+        }
+    }
+
+    /**
+     * Tüm video gözlemlerini durdurur
+     * @deprecated Lütfen bunun yerine listener.stop() kullanın
+     * @example
+     * client.stopAllObserving();
+     */
+    stopAllObserving() {
+        console.warn('Warning: stopAllObserving metodu eski versiyondur. Lütfen listener.stop() kullanın.');
+        if (this._observers) {
+            for (const [observerId] of this._observers) {
+                this.stopObserving(observerId);
+            }
+        }
+    }
+
+    /**
+     * Yeni videolar için sürekli dinleyici
+     * @param {string} event - Dinlenecek olay ('newVideo')
+     * @param {Function} callback - Olay gerçekleştiğinde çağrılacak fonksiyon
+     * @param {Object} [options] - Dinleyici seçenekleri
+     * @param {number} [options.interval=5000] - Kontrol aralığı (milisaniye)
+     * @returns {Object} Dinleyici kontrolcüsü
+     * @example
+     * // Yeni videoları sürekli dinle
+     * const listener = client.on('newVideo', (video) => {
+     *   console.log('Yeni video:', video.title);
+     * }, { interval: 10000 });
+     * 
+     * // Dinlemeyi durdur
+     * listener.stop();
+     */
+    on(event, callback, options = {}) {
+        if (event !== 'newVideo') {
+            throw new Error('Geçersiz event tipi. Sadece "newVideo" destekleniyor.');
+        }
+
+        if (!callback || typeof callback !== 'function') {
+            throw new Error('Callback fonksiyonu gerekli');
+        }
+
+        // Son kontrol edilen video ID'sini sakla
+        let lastVideoId = null;
+        
+        // Varsayılan interval 5 saniye
+        const interval = options.interval || 5000;
+
+        // Kontrol fonksiyonu
+        const checkNewVideos = async () => {
+            try {
+                const response = await this.getLatestVideos();
+                
+                if (response && response.length > 0) {
+                    const latestVideo = response[0];
+
+                    // Eğer bu yeni bir video ise
+                    if (lastVideoId !== null && latestVideo.id !== lastVideoId) {
+                        // Yeni videoları bul (son kontrolden sonra eklenenler)
+                        const newVideos = response.filter(video => video.id > lastVideoId);
+                        
+                        // Yeni videoları callback ile bildir (en yeniden eskiye)
+                        for (const video of newVideos.reverse()) {
+                            callback(video);
+                        }
+                    }
+
+                    // Son video ID'sini güncelle
+                    lastVideoId = latestVideo.id;
+                }
+            } catch (error) {
+                console.error('Video kontrolü sırasında hata:', error);
+            }
+        };
+
+        // İlk kontrolü hemen yap
+        checkNewVideos();
+
+        // Periyodik kontrolleri başlat
+        const intervalId = setInterval(checkNewVideos, interval);
+
+        // Interval ID'sini kaydet
+        this._listeners = this._listeners || new Map();
+        this._listeners.set(intervalId, { type: event, callback });
+
+        // Kontrol objesi döndür
+        return {
+            stop: () => {
+                clearInterval(intervalId);
+                this._listeners.delete(intervalId);
+            },
+            isActive: () => this._listeners.has(intervalId),
+            getInterval: () => interval
+        };
+    }
 }
 
 module.exports = SitWatch; 
